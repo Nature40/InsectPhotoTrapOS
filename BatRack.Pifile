@@ -61,6 +61,10 @@ RUN tee -a /boot/config.txt <<<dtoverlay=i2c-rtc,ds3231
 # Set Europe/Berlin timezone
 RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
+# install git
+RUN apt update -y
+RUN apt-get install -y git
+
 # set git config for possible local commits
 RUN git config --global user.email "pi@BatRack"
 RUN git config --global user.name "BatRack User"
@@ -82,6 +86,7 @@ RUN systemctl enable hwclock
 ### network configuration
 
 # enable hostapd-config script (WiFi AP)
+RUN apt-get install -y hostapd
 RUN systemctl enable hostapd-config.service
 RUN systemctl enable hostapd.service
 
