@@ -62,8 +62,8 @@ RUN tee -a /boot/config.txt <<<dtoverlay=i2c-rtc,ds3231
 RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 # install git
-RUN apt update -y
-RUN apt-get install -y git
+#RUN apt update -y
+#RUN apt-get install -y git
 
 # set git config for possible local commits
 RUN git config --global user.email "pi@BatRack"
@@ -178,7 +178,7 @@ EOF
 ### BatRack configuration
 
 # update sources für RPI_Cam_Web installer
-RUN apt-get update
+RUN apt-get update -y
 
 # Enable camera interaction 
 RUN raspi-config nonint do_camera 0
